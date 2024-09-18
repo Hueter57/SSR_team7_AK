@@ -1,18 +1,23 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#include <ESP32Servo.h>
+#include <MotorDriver.hpp>
+#include <ak\Ps3State.hpp>
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+MotorDriver omniMotor1;
+MotorDriver omniMotor2;
+MotorDriver omniMotor3;
+
+MotorDriver firingMotor;
+MotorDriver firingDirectionMotor;
+Servo       pushBollServo;
+
+Servo grabbingServo;
+Servo liftingServo;
+
+
+void  setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
