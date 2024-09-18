@@ -1,22 +1,23 @@
 #include <Arduino.h>
 
 #include <ESP32Servo.h>
-#include <MotorDriver.hpp>
-#include <ak\Ps3State.hpp>
+#include <ak/Ps3State.hpp>
+#include <ak/motordriver/TB6612.hpp>
 
-MotorDriver omniMotor1;
-MotorDriver omniMotor2;
-MotorDriver omniMotor3;
+using ak::motordriver::TB6612;
 
-MotorDriver firingMotor;
-MotorDriver firingDirectionMotor;
-Servo       pushBollServo;
+TB6612 omniMotor1;
+TB6612 omniMotor2;
+TB6612 omniMotor3;
+
+TB6612 firingMotor;
+TB6612 firingDirectionMotor;
+Servo  pushBollServo;
 
 Servo grabbingServo;
 Servo liftingServo;
 
-
-void  setup() {
+void setup() {
 }
 
 void loop() {
