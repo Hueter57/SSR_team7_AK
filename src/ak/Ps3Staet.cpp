@@ -1,4 +1,4 @@
-#include <ak/Ps3State.hpp>
+#include "ak/Ps3State.hpp"
 
 auto ak::Ps3State::getMotorOutput1() -> int {
     return 1;
@@ -18,5 +18,5 @@ auto ak::Ps3State::update(ps3_t data) -> void {
     y           = signRY * constrain(abs(rightY) - 15, 0, 100);
 
     motorValue1 = x;
-    motorValue2 = (int)(- 0.5 * x) ;
+    motorValue2 = (int)(-0.5 * x);
 }
