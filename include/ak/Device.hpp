@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ak/Input.hpp"
 #include "ak/Output.hpp"
 #include "ak/device/Arm.hpp"

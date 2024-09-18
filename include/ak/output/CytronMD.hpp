@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdint>
+#include <Arduino.h>
 
 #include "ak/output/CytronMD.hpp"
 

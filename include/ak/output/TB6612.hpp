@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdint>
+#include <Arduino.h>
 
 namespace ak::output {
 struct TB6612
