@@ -2,6 +2,7 @@
 
 #include <ESP32Servo.h>
 
+#include "ak/Input.hpp"
 #include "ak/Ps3State.hpp"
 #include "ak/motordriver/CytronMD.hpp"
 #include "ak/motordriver/TB6612.hpp"
