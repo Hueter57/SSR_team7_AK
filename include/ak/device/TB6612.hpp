@@ -1,12 +1,10 @@
 #pragma once
 
 #include <Arduino.h>
-// TB6612使用 Dual DCモータードライブキット用
-// TB6612{エンコーダー入力1, エンコーダー入力2, モーター出力指定正, モーター出力指定負}
 
 #include "ak/output/data/TB6612.hpp"
 
-namespace ak::motordriver {
+namespace ak::device {
 class TB6612 {
 public:
     uint8_t pwm_pin1;
@@ -22,4 +20,4 @@ public:
     auto stop() -> void;
     auto set_value(const output::data::TB6612 &value) -> void;
 };
-}  // namespace ak::motordriver
+}  // namespace ak::device

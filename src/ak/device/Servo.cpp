@@ -1,21 +1,19 @@
-#include "ak/Servo.hpp"
+#include "ak/device/Servo.hpp"
 
-#include <Arduino.h>
-
-ak::Servo::Servo(uint8_t pwm_pin, uint8_t pwm_ch) : pwm_pin(pwm_pin), pwm_ch(pwm_ch) {
+ak::device::Servo::Servo(uint8_t pwm_pin, uint8_t pwm_ch) : pwm_pin(pwm_pin), pwm_ch(pwm_ch) {
 }
 
-auto ak::Servo::setup() -> void {
+auto ak::device::Servo::setup() -> void {
     pinMode(this->pwm_pin, OUTPUT);
     ledcSetup(this->pwm_ch, PWM_FREQUANCY, PWM_RESOLUTION_BITS);
     ledcAttachPin(this->pwm_pin, this->pwm_ch);
     this->stop();
 }
 
-auto ak::Servo::stop() -> void {
+auto ak::device::Servo::stop() -> void {
     ledcWrite(this->pwm_ch, 0);
 }
 
-auto ak::Servo::set_value(const ak::output::data::Servo &value) -> void {
+auto ak::device::Servo::set_value(const ak::output::data::Servo &value) -> void {
     ledcWrite(this->pwm_ch, constrain(value.pulse_width_us, PWM_PULSE_WIDTH_MIN_US, PWM_PULSE_WIDTH_MAX_US));
 }

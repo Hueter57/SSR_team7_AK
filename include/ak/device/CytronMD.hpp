@@ -3,9 +3,11 @@
 #include <array>
 #include <cstdint>
 
+#include <Arduino.h>
+
 #include "ak/output/data/CytronMD.hpp"
 
-namespace ak::motordriver {
+namespace ak::device {
 class CytronMD {
 private:
     uint8_t dir_pin;
@@ -21,4 +23,4 @@ public:
     auto stop() -> void;
     auto set_value(const ak::output::data::CytronMD &value) -> void;
 };
-}  // namespace ak::motordriver
+}  // namespace ak::device
