@@ -17,7 +17,7 @@ auto ak::device::CytronMD::stop() -> void {
     ledcWrite(this->pwm_ch, 0);
 }
 
-auto ak::device::CytronMD::set_value(const ak::output::data::CytronMD &value) -> void {
+auto ak::device::CytronMD::set_value(const ak::output::CytronMD &value) -> void {
     digitalWrite(this->dir_pin, value.dir);
     ledcWrite(this->pwm_ch, value.pwm);
 }

@@ -20,7 +20,7 @@ auto ak::device::TB6612::stop() -> void {
     digitalWrite(this->pwm_pin2, HIGH);
 }
 
-auto ak::device::TB6612::set_value(const ak::output::data::TB6612 &value) -> void {
+auto ak::device::TB6612::set_value(const ak::output::TB6612 &value) -> void {
     ledcWrite(this->pwm_ch1, value.pwm1);
     ledcWrite(this->pwm_ch2, value.pwm2);
 }
