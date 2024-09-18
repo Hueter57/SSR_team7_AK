@@ -1,5 +1,13 @@
 #include "ak/Device.hpp"
 
+ak::Device::Device() : arm(), controller(), launcher(), stearing() {
+}
+
+ak::Device::Device(ak::device::Arm arm, ak::device::Controller controller, ak::device::Launcher launcher,
+                   ak::device::Stearing stearing)
+    : arm(arm), controller(controller), launcher(launcher), stearing(stearing) {
+}
+
 auto ak::Device::setup() -> void {
     this->controller.begin_connection();
     this->arm.setup();

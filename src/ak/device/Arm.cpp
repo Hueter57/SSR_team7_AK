@@ -1,5 +1,11 @@
 #include "ak/device/Arm.hpp"
 
+ak::device::Arm::Arm()
+    : lift(ak::assign::LIFT_PWM_PIN, ak::assign::LIFT_PWM_CH), hand(ak::assign::HAND_PWM_PIN, ak::assign::HAND_PWM_CH) {
+}
+ak::device::Arm::Arm(ak::device::Servo lift, ak::device::Servo hand) : lift(lift), hand(hand) {
+}
+
 auto ak::device::Arm::setup() -> void {
     this->hand.setup();
     this->lift.setup();
