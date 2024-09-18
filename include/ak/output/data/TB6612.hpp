@@ -2,12 +2,10 @@
 
 #include <cstdint>
 
-#include "ak/output/data/CytronMD.hpp"
-
 namespace ak::output::data {
-struct CytronMD
+struct TB6612
 {
-    uint8_t dir;
-    uint8_t pwm;
+    uint8_t pwm1;
+    uint8_t pwm2;
 };
 }  // namespace ak::output::data
