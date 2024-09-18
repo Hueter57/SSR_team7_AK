@@ -7,22 +7,17 @@
 namespace ak::motordriver {
 class TB6612 {
 public:
-    int in1Pin;
-    int in2Pin;
+    uint8_t pwm_pin1;
+    uint8_t pwm_pin2;
+    uint8_t pwm_ch1;
+    uint8_t pwm_ch2;
 
-    int speed;  // 0 ~ -1024
+    static constexpr uint32_t PWM_FREQUANCY       = 12800;
+    static constexpr uint8_t  PWM_RESOLUTION_BITS = 8;
 
-    int pwmch1;
-    int pwmch2;
-
-    TB6612(int pin1, int pin2, int ch1, int ch2);
-
-    void setup();
-
-    void stop();
-
-    void changeSpeed(int value);
-
-    auto serialize() const -> std::array<char, 16>;
+    TB6612(uint8_t pwm_pin1, uint8_t pwm_pin2, uint8_t pwm_ch1, uint8_t pwm_ch2);
+    auto setup() -> void;
+    auto stop() -> void;
+    auto set_value(uint8_t pwm1, uint8_t pwm2) -> void;
 };
-}
+}  // namespace ak::motordriver
