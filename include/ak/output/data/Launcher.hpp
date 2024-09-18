@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ak/output/data/Servo.hpp"
+#include "ak/output/data/PWMServo.hpp"
 #include "ak/output/data/TB6612.hpp"
 
 namespace ak::output::data {

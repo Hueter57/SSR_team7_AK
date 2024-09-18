@@ -20,7 +20,7 @@ auto ak::motordriver::TB6612::stop() -> void {
     digitalWrite(this->pwm_pin2, HIGH);
 }
 
-auto ak::motordriver::TB6612::set_value(uint8_t pwm1, uint8_t pwm2) -> void {
-    ledcWrite(this->pwm_ch1, pwm1);
-    ledcWrite(this->pwm_ch2, pwm2);
+auto ak::motordriver::TB6612::set_value(const ak::output::data::TB6612 &value) -> void {
+    ledcWrite(this->pwm_ch1, value.pwm1);
+    ledcWrite(this->pwm_ch2, value.pwm2);
 }

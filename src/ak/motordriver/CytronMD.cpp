@@ -15,11 +15,11 @@ auto ak::motordriver::CytronMD::setup() -> void {
 }
 
 auto ak::motordriver::CytronMD::stop() -> void {
-    digitalWrite(dir_pin, LOW);
-    ledcWrite(pwm_ch, 0);
+    digitalWrite(this->dir_pin, LOW);
+    ledcWrite(this->pwm_ch, 0);
 }
 
-auto ak::motordriver::CytronMD::set_value(uint8_t dir, uint8_t pwm) -> void {
-    digitalWrite(dir_pin, dir);
-    ledcWrite(pwm_ch, pwm);
+auto ak::motordriver::CytronMD::set_value(const ak::output::data::CytronMD &value) -> void {
+    digitalWrite(this->dir_pin, value.dir);
+    ledcWrite(this->pwm_ch, value.pwm);
 }

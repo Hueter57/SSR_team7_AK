@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ak/output/data/Servo.hpp"
+#include "ak/output/data/PWMServo.hpp"
 
 namespace ak::output::data {
 struct Arm

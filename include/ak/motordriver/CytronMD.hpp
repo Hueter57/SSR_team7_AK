@@ -3,6 +3,8 @@
 #include <array>
 #include <cstdint>
 
+#include "ak/output/data/CytronMD.hpp"
+
 namespace ak::motordriver {
 class CytronMD {
 private:
@@ -17,6 +19,6 @@ public:
     CytronMD(uint8_t dir_pin, uint8_t pwm_pin, uint8_t pwmch);
     auto setup() -> void;
     auto stop() -> void;
-    auto set_value(uint8_t dir, uint8_t pwm) -> void;
+    auto set_value(const ak::output::data::CytronMD &value) -> void;
 };
 }  // namespace ak::motordriver
