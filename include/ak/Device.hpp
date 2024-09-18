@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ak/Assign.hpp"
 #include "ak/Input.hpp"
 #include "ak/Output.hpp"
 #include "ak/device/Arm.hpp"
@@ -9,12 +10,15 @@
 
 namespace ak {
 class Device {
-public:
+private:
     device::Arm        arm;
     device::Controller controller;
     device::Launcher   launcher;
     device::Stearing   stearing;
 
+public:
+    Device();
+    Device(device::Arm arm, device::Controller controller, device::Launcher launcher, device::Stearing stearing);
     auto setup() -> void;
     auto stop() -> void;
     auto get_input() const -> const Input &;
