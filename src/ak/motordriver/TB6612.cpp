@@ -1,13 +1,13 @@
-#include <MotorDriver.hpp>
+#include <ak/motordriver/TB6612.hpp>
 
-MotorDriver::MotorDriver(int pin1, int pin2, int ch1, int ch2) {
-    in1Pin  = pin1;
-    in2Pin  = pin2;
-    pwmch1   = ch1;
-    pwmch2   = ch2;
+ak::motordriver::TB6612::TB6612(int pin1, int pin2, int ch1, int ch2) {
+    in1Pin = pin1;
+    in2Pin = pin2;
+    pwmch1 = ch1;
+    pwmch2 = ch2;
 }
 
-void MotorDriver::setup() {
+void ak::motordriver::TB6612::setup() {
     pinMode(in1Pin, OUTPUT);
     pinMode(in2Pin, OUTPUT);
 
@@ -23,11 +23,11 @@ void MotorDriver::setup() {
     digitalWrite(in2Pin, HIGH);
 }
 
-void MotorDriver::stop() {
+void ak::motordriver::TB6612::stop() {
     ledcWrite(pwmch1, LOW);
 }
 
-void MotorDriver::changeSpeed(int value) {
+void ak::motordriver::TB6612::changeSpeed(int value) {
     speed = value;
     // Serial.print(value);
     if (value > 0) {
@@ -43,7 +43,7 @@ void MotorDriver::changeSpeed(int value) {
     }
 }
 
-auto MotorDriver::serialize() const -> std::array<char, 16> {
+auto ak::motordriver::TB6612::serialize() const -> std::array<char, 16> {
     auto result = std::array<char, 16>();
     sprintf(result.data(), "speed: %d", speed);
     return result;
