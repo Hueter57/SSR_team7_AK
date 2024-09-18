@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-#include "ak/output/data/TB6612.hpp"
+#include "ak/output/TB6612.hpp"
 
 namespace ak::device {
 class TB6612 {
@@ -18,6 +18,6 @@ public:
     TB6612(uint8_t pwm_pin1, uint8_t pwm_pin2, uint8_t pwm_ch1, uint8_t pwm_ch2);
     auto setup() -> void;
     auto stop() -> void;
-    auto set_value(const output::data::TB6612 &value) -> void;
+    auto set_value(const output::TB6612 &value) -> void;
 };
 }  // namespace ak::device

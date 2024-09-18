@@ -5,7 +5,7 @@
 
 #include <Arduino.h>
 
-#include "ak/output/data/CytronMD.hpp"
+#include "ak/output/CytronMD.hpp"
 
 namespace ak::device {
 class CytronMD {
@@ -21,6 +21,6 @@ public:
     CytronMD(uint8_t dir_pin, uint8_t pwm_pin, uint8_t pwmch);
     auto setup() -> void;
     auto stop() -> void;
-    auto set_value(const ak::output::data::CytronMD &value) -> void;
+    auto set_value(const ak::output::CytronMD &value) -> void;
 };
 }  // namespace ak::device

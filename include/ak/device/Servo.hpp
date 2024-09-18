@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-#include "ak/output/data/Servo.hpp"
+#include "ak/output/Servo.hpp"
 
 namespace ak::device {
 class Servo {
@@ -22,6 +22,6 @@ public:
 
     auto setup() -> void;
     auto stop() -> void;
-    auto set_value(const output::data::Servo &value) -> void;
+    auto set_value(const output::Servo &value) -> void;
 };
 }  // namespace ak

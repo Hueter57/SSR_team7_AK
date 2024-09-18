@@ -1,12 +1,12 @@
 #pragma once
 
-#include "ak/output/data/CytronMD.hpp"
+#include "ak/output/CytronMD.hpp"
 
-namespace ak::output::data {
+namespace ak::output {
 struct Stearing
 {
     CytronMD right_front;
     CytronMD left_front;
     CytronMD back;
 };
-}  // namespace ak::output::data
+}  // namespace ak::output

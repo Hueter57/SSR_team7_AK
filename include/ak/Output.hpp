@@ -1,5 +1,14 @@
 #pragma once
 
+#include "ak/output/Arm.hpp"
+#include "ak/output/Launcher.hpp"
+#include "ak/output/Stearing.hpp"
+
 namespace ak {
-class Output {};
+struct Output
+{
+    output::Arm      arm;
+    output::Launcher launcher;
+    output::Stearing stearing;
+};
 }  // namespace ak
