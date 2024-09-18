@@ -1,10 +1,12 @@
 #include <Arduino.h>
 
 #include <ESP32Servo.h>
-#include <ak/Ps3State.hpp>
-#include <ak/motordriver/CytronMD.hpp>
-#include <ak/motordriver/TB6612.hpp>
 
+#include "ak/Ps3State.hpp"
+#include "ak/motordriver/CytronMD.hpp"
+#include "ak/motordriver/TB6612.hpp"
+
+using ak::Input;
 using ak::motordriver::CytronMD;
 using ak::motordriver::TB6612;
 
@@ -18,6 +20,8 @@ Servo  pushBollServo;
 
 Servo grabbingServo;
 Servo liftingServo;
+
+Input input;
 
 void setup() {
 }
