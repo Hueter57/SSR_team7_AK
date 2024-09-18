@@ -1,50 +1,26 @@
 #include "ak/motordriver/TB6612.hpp"
 
-ak::motordriver::TB6612::TB6612(int pin1, int pin2, int ch1, int ch2) {
-    in1Pin = pin1;
-    in2Pin = pin2;
-    pwmch1 = ch1;
-    pwmch2 = ch2;
+ak::motordriver::TB6612::TB6612(uint8_t pwm_pin1, uint8_t pwm_pin2, uint8_t pwm_ch1, uint8_t pwm_ch2)
+    : pwm_pin1(pwm_pin1), pwm_pin2(pwm_pin2), pwm_ch1(pwm_ch1), pwm_ch2(pwm_ch2) {
 }
 
-void ak::motordriver::TB6612::setup() {
-    pinMode(in1Pin, OUTPUT);
-    pinMode(in2Pin, OUTPUT);
+auto ak::motordriver::TB6612::setup() -> void {
+    pinMode(this->pwm_pin1, OUTPUT);
+    pinMode(this->pwm_pin2, OUTPUT);
+    ledcSetup(this->pwm_ch1, PWM_FREQUANCY, PWM_RESOLUTION_BITS);
+    ledcSetup(this->pwm_ch2, PWM_FREQUANCY, PWM_RESOLUTION_BITS);
+    ledcAttachPin(this->pwm_pin1, this->pwm_ch1);
+    ledcAttachPin(this->pwm_pin2, this->pwm_ch2);
 
-    ledcSetup(pwmch1, 12800, 8);
-    ledcAttachPin(in1Pin, pwmch1);
-    ledcWrite(pwmch1, 0);
-
-    ledcSetup(pwmch2, 12800, 8);
-    ledcAttachPin(in2Pin, pwmch2);
-    ledcWrite(pwmch2, 0);
-
-    digitalWrite(in1Pin, HIGH);
-    digitalWrite(in2Pin, HIGH);
+    this->stop();
 }
 
-void ak::motordriver::TB6612::stop() {
-    ledcWrite(pwmch1, LOW);
+auto ak::motordriver::TB6612::stop() -> void {
+    digitalWrite(this->pwm_pin1, HIGH);
+    digitalWrite(this->pwm_pin2, HIGH);
 }
 
-void ak::motordriver::TB6612::changeSpeed(int value) {
-    speed = value;
-    // Serial.print(value);
-    if (value > 0) {
-        digitalWrite(in2Pin, LOW);
-        ledcWrite(pwmch1, value);
-    } else if (value < 0) {
-        digitalWrite(in1Pin, LOW);
-        ledcWrite(pwmch2, -value);
-    } else {
-        ledcWrite(pwmch1, 0);
-        digitalWrite(in1Pin, HIGH);
-        digitalWrite(in2Pin, HIGH);
-    }
-}
-
-auto ak::motordriver::TB6612::serialize() const -> std::array<char, 16> {
-    auto result = std::array<char, 16>();
-    sprintf(result.data(), "speed: %d", speed);
-    return result;
+auto ak::motordriver::TB6612::set_value(uint8_t pwm1, uint8_t pwm2) -> void {
+    ledcWrite(this->pwm_ch1, pwm1);
+    ledcWrite(this->pwm_ch2, pwm2);
 }
