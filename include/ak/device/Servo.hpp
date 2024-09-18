@@ -1,8 +1,10 @@
 #pragma once
 
+#include <Arduino.h>
+
 #include "ak/output/data/Servo.hpp"
 
-namespace ak {
+namespace ak::device {
 class Servo {
 private:
     uint8_t pwm_pin;
