@@ -28,13 +28,13 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
     auto output = ak::Output();
     {  // arm
         // l1ボタンで開いたり閉じたり
-        if (input.button.l1) {
+        if (input.state.button.l1) {
             output.arm.hand.pulse_width_us = this->pulse_width_arm_hand_open;
         } else {
             output.arm.hand.pulse_width_us = this->pulse_width_arm_hand_close;
         }
         // r1ボタンでリフトを上下
-        if (input.button.r1) {
+        if (input.state.button.r1) {
             output.arm.lift.pulse_width_us = this->pulse_width_arm_lift_up;
         } else {
             output.arm.lift.pulse_width_us = this->pulse_width_arm_lift_down;
@@ -49,8 +49,8 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
         output.launcher.ball_compressor = {.pwm1 = static_cast<uint8_t>(f_c ? 255 : 0),
                                            .pwm2 = static_cast<uint8_t>(f_c ? 0 : 255)};
         // upボタンとdownボタンで発射角度を調整
-        const auto angle_of_fire_up   = input.button.up && f_a || input.button.down && !f_a;
-        const auto angle_of_fire_down = input.button.down && f_a || input.button.up && !f_a;
+        const auto angle_of_fire_up   = input.state.button.up && f_a || input.state.button.down && !f_a;
+        const auto angle_of_fire_down = input.state.button.down && f_a || input.state.button.up && !f_a;
         if (angle_of_fire_up) {
             output.launcher.angle_of_fire = {.pwm1 = 255, .pwm2 = 0};
         } else if (angle_of_fire_down) {
@@ -59,7 +59,7 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
             output.launcher.angle_of_fire = {.pwm1 = 255, .pwm2 = 255};
         }
         // circleボタンで発射
-        if (input.button.circle) {
+        if (input.state.button.circle) {
             output.launcher.trigger.pulse_width_us = this->pulse_width_launcher_trigger_on;
         } else {
             output.launcher.trigger.pulse_width_us = this->pulse_width_launcher_trigger_off;
@@ -71,9 +71,9 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
         constexpr float ANGLE_OFFSET_LF = -2.0f * PI / 3.0f;
         constexpr float ANGLE_OFFSET_BK = 0.0f;
 
-        const auto lx = input.analog.stick.lx;
-        const auto ly = input.analog.stick.ly;
-        const auto rx = input.analog.stick.rx;
+        const auto lx = input.state.analog.stick.lx;
+        const auto ly = input.state.analog.stick.ly;
+        const auto rx = input.state.analog.stick.rx;
         // stick value: -127 ~ 127
         auto spd_rf = constrain(lx * std::cos(ANGLE_OFFSET_RF) + ly * std::sin(ANGLE_OFFSET_RF) + rx, -255, 255);
         auto spd_lf = constrain(lx * std::cos(ANGLE_OFFSET_LF) + ly * std::sin(ANGLE_OFFSET_LF) + rx, -255, 255);

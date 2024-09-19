@@ -16,6 +16,7 @@ public:
     auto attach_on_recieved(void (*on_recieved)()) -> void;
     auto attach_on_connected(void (*on_connected)()) -> void;
     auto attach_on_disconnected(void (*on_disconnected)()) -> void;
-    auto data() const -> const ps3_t &;
+    auto state() const -> const ps3_t &;
+    auto event() const -> const ps3_event_t &;
 };
 }  // namespace ak

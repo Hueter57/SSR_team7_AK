@@ -5,7 +5,9 @@
 namespace ak::output {
 struct Arm
 {
-    Servo lift;
     Servo hand;
+    Servo lift;
+
+    static auto stop() -> Arm;
 };
 }  // namespace ak::output

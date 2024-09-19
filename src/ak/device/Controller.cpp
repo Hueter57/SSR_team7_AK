@@ -23,6 +23,6 @@ auto ak::device::Controller::attach_on_disconnected(void (*on_disconnected)()) -
     this->ps3.attachOnDisconnect(on_disconnected);
 }
 
-auto ak::device::Controller::data() const -> const ps3_t & {
+auto ak::device::Controller::state() const -> const ps3_t & {
     return this->ps3.data;
 }

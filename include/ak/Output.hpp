@@ -10,5 +10,7 @@ struct Output
     output::Arm      arm;
     output::Launcher launcher;
     output::Stearing stearing;
+
+    static auto stop() -> Output;
 };
 }  // namespace ak

@@ -7,11 +7,12 @@ auto ak::device::Servo::setup() -> void {
     pinMode(this->pwm_pin, OUTPUT);
     ledcSetup(this->pwm_ch, PWM_FREQUANCY, PWM_RESOLUTION_BITS);
     ledcAttachPin(this->pwm_pin, this->pwm_ch);
+
     this->stop();
 }
 
 auto ak::device::Servo::stop() -> void {
-    ledcWrite(this->pwm_ch, 0);
+    this->set_value(ak::output::Servo::stop());
 }
 
 auto ak::device::Servo::set_value(const ak::output::Servo &value) -> void {

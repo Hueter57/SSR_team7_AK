@@ -8,5 +8,7 @@ struct Stearing
     CytronMD right_front;
     CytronMD left_front;
     CytronMD back;
+
+    static auto stop() -> Stearing;
 };
 }  // namespace ak::output
