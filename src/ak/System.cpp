@@ -107,6 +107,7 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
     if (sound_player_is_active) {
         using ak::output::TrackId;
 
+        output.sound_player_led = HIGH;
         // 大体15秒おきくらい
         if (move_steps % (15000 / Delay::TIME_MS) == 0) {
             output.sound_track_id = TrackId::MOVE;

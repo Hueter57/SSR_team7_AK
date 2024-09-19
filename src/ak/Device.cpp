@@ -38,4 +38,6 @@ auto ak::Device::set_value(const Output &value) -> void {
     if (id > 0) {
         this->sound_player.play(id);
     }
+    digitalWrite(assign::STOP_LED_PIN, value.stop_led);
+    digitalWrite(assign::SOUND_PLAYER_LED_PIN, value.sound_player_led);
 }
