@@ -27,4 +27,6 @@ constexpr uint8_t STR_LEFT_FRONT_PWM_CH    = 0;
 constexpr uint8_t STR_BACK_DIR_PIN         = 0;
 constexpr uint8_t STR_BACK_PWM_PIN         = 0;
 constexpr uint8_t STR_BACK_PWM_CH          = 0;
-}
+constexpr uint8_t STOP_LED_PIN             = 0;
+constexpr uint8_t SOUND_PLAYER_LED_PIN     = 0;
+}  // namespace ak::assign
