@@ -16,8 +16,7 @@ auto ak::device::TB6612::setup() -> void {
 }
 
 auto ak::device::TB6612::stop() -> void {
-    digitalWrite(this->pwm_pin1, HIGH);
-    digitalWrite(this->pwm_pin2, HIGH);
+    this->set_value(ak::output::TB6612::stop());
 }
 
 auto ak::device::TB6612::set_value(const ak::output::TB6612 &value) -> void {

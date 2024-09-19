@@ -9,12 +9,12 @@ auto ak::device::CytronMD::setup() -> void {
     pinMode(this->pwm_pin, OUTPUT);
     ledcSetup(this->pwm_ch, PWM_FREQUANCY, PWM_RESOLUTION_BITS);
     ledcAttachPin(this->pwm_pin, this->pwm_ch);
+
     this->stop();
 }
 
 auto ak::device::CytronMD::stop() -> void {
-    digitalWrite(this->dir_pin, LOW);
-    ledcWrite(this->pwm_ch, 0);
+    this->set_value(ak::output::CytronMD::stop());
 }
 
 auto ak::device::CytronMD::set_value(const ak::output::CytronMD &value) -> void {

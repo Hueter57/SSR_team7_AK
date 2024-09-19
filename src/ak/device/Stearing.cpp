@@ -17,12 +17,12 @@ auto ak::device::Stearing::setup() -> void {
     this->right_front.setup();
     this->left_front.setup();
     this->back.setup();
+
+    this->stop();
 }
 
 auto ak::device::Stearing::stop() -> void {
-    this->right_front.stop();
-    this->left_front.stop();
-    this->back.stop();
+    this->set_value(ak::output::Stearing::stop());
 }
 
 auto ak::device::Stearing::set_value(const ak::output::Stearing &value) -> void {

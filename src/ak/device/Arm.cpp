@@ -9,12 +9,12 @@ ak::device::Arm::Arm(ak::device::Servo lift, ak::device::Servo hand) : lift(lift
 auto ak::device::Arm::setup() -> void {
     this->hand.setup();
     this->lift.setup();
+
     this->stop();
 }
 
 auto ak::device::Arm::stop() -> void {
-    this->hand.stop();
-    this->lift.stop();
+    this->set_value(ak::output::Arm::stop());
 }
 
 auto ak::device::Arm::set_value(const ak::output::Arm &value) -> void {

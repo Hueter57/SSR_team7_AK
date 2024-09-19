@@ -3,5 +3,9 @@
 #include <include/ps3.h>
 
 namespace ak {
-using Input = ps3_t;
+struct Input
+{
+    ps3_t       state;
+    ps3_event_t event;
+};
 }  // namespace ak

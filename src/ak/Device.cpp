@@ -13,16 +13,16 @@ auto ak::Device::setup() -> void {
     this->arm.setup();
     this->launcher.setup();
     this->stearing.setup();
+
+    this->stop();
 }
 
 auto ak::Device::stop() -> void {
-    this->arm.stop();
-    this->launcher.stop();
-    this->stearing.stop();
+    this->set_value(ak::Output::stop());
 }
 
 auto ak::Device::get_input() const -> const Input & {
-    return this->controller.data();
+    return Input{this->controller.state(), this->controller.event()};
 }
 
 auto ak::Device::set_value(const Output &value) -> void {
