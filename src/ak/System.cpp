@@ -26,6 +26,13 @@ auto ak::System::set_pulse_width_launcher(int16_t trigger_on, int16_t trigger_of
 
 auto ak::System::update(const ak::Input &input) -> ak::Output {
     auto output = ak::Output();
+    if (input.state.button.start) {
+        this->stop = false;
+    }
+    if (this->stop || input.state.button.select) {
+        this->stop = true;
+        return ak::Output::stop();
+    }
     {  // arm
         // l1ボタンで開いたり閉じたり
         if (input.state.button.l1) {
