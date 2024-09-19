@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DFPlayerMini_Fast.h>
+
 #include "ak/Assign.hpp"
 #include "ak/Input.hpp"
 #include "ak/Output.hpp"
@@ -15,6 +17,12 @@ private:
     device::Controller controller;
     device::Launcher   launcher;
     device::Stearing   stearing;
+    HardwareSerial     serial_for_sound_player;
+    DFPlayerMini_Fast  sound_player;
+
+    static constexpr uint8_t  SOUND_PLAYER_UART_NUM      = 2;
+    static constexpr uint32_t SOUND_PLAYER_UART_BAUDRATE = 9600;
+    static constexpr uint8_t  SOUND_PLAYER_VOLUME        = 1;
 
 public:
     Device();

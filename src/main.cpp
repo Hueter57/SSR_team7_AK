@@ -1,5 +1,6 @@
 #include <Arduino.h>
 
+#include "ak/Delay.hpp"
 #include "ak/Device.hpp"
 #include "ak/Input.hpp"
 #include "ak/Output.hpp"
@@ -17,7 +18,8 @@ void setup() {
 }
 
 void loop() {
-    auto input  = device.get_input();
-    auto output = system.update(input);
+    ak::Delay _;
+    auto      input  = device.get_input();
+    auto      output = system.update(input);
     device.set_value(output);
 }
