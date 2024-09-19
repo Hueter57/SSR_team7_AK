@@ -9,6 +9,7 @@ namespace ak {
 // Input -> Outputの変換を行う。内部状態を持つため、クラスで宣言。
 class System {
 private:
+    bool    stop;
     bool    forward_launcher_ball_compressor;
     bool    forward_launcher_angle_of_fire;
     bool    forward_stearing_right_front;
