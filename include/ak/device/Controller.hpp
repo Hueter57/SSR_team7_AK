@@ -7,8 +7,7 @@
 namespace ak::device {
 class Controller {
 private:
-    Ps3Controller         ps3;
-    static constexpr char PS3_MAC_ADDRESS[18] = "";
+    Ps3Controller ps3;
 
 public:
     Controller();
@@ -19,4 +18,4 @@ public:
     auto state() const -> const ps3_t &;
     auto event() const -> const ps3_event_t &;
 };
-}  // namespace ak
+}  // namespace ak::device

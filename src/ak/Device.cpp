@@ -26,7 +26,7 @@ auto ak::Device::stop() -> void {
     this->set_value(ak::Output::stop());
 }
 
-auto ak::Device::get_input() const -> const Input & {
+auto ak::Device::get_input() const -> Input {
     return Input{this->controller.state(), this->controller.event()};
 }
 

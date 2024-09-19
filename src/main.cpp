@@ -6,21 +6,21 @@
 #include "ak/Output.hpp"
 #include "ak/System.hpp"
 
-ak::Device device;
-ak::System system;
+ak::Device dev;
+ak::System sys;
 
 void setup() {
-    device.setup();
-    system.init();
-    system.set_forward_launcher(true, true);
-    system.set_forward_stearing(true, true, true);
-    system.set_pulse_width_arm(0, 0, 0, 0);
-    system.set_pulse_width_launcher(0, 0);
+    dev.setup();
+    sys.init();
+    sys.set_forward_launcher(true, true);
+    sys.set_forward_stearing(true, true, true);
+    sys.set_pulse_width_arm(0, 0, 0, 0);
+    sys.set_pulse_width_launcher(0, 0);
 }
 
 void loop() {
     ak::Delay _;
-    auto      input  = device.get_input();
-    auto      output = system.update(input);
-    device.set_value(output);
+    auto      input  = dev.get_input();
+    auto      output = sys.update(input);
+    dev.set_value(output);
 }

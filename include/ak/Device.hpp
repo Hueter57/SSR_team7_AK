@@ -29,7 +29,7 @@ public:
     Device(device::Arm arm, device::Controller controller, device::Launcher launcher, device::Stearing stearing);
     auto setup() -> void;
     auto stop() -> void;
-    auto get_input() const -> const Input &;
+    auto get_input() const -> Input;
     auto set_value(const Output &value) -> void;
 };
 }  // namespace ak

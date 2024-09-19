@@ -8,7 +8,7 @@ ak::device::Controller::Controller() : ps3() {
 }
 
 auto ak::device::Controller::begin_connection() -> void {
-    this->ps3.begin(ak::device::Controller::PS3_MAC_ADDRESS);
+    this->ps3.begin("");
 }
 
 auto ak::device::Controller::attach_on_recieved(void (*on_recieved)()) -> void {
@@ -25,4 +25,8 @@ auto ak::device::Controller::attach_on_disconnected(void (*on_disconnected)()) -
 
 auto ak::device::Controller::state() const -> const ps3_t & {
     return this->ps3.data;
+}
+
+auto ak::device::Controller::event() const -> const ps3_event_t & {
+    return this->ps3.event;
 }
