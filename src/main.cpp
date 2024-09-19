@@ -11,6 +11,7 @@ ak::System system;
 
 void setup() {
     device.setup();
+    system.init();
     system.set_forward_launcher(true, true);
     system.set_forward_stearing(true, true, true);
     system.set_pulse_width_arm(0, 0, 0, 0);
