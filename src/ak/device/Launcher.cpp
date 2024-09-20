@@ -1,10 +1,10 @@
 #include "ak/device/Launcher.hpp"
 
 ak::device::Launcher::Launcher()
-    : angle_of_fire(ak::assign::ANGLE_OF_FIRE_PWM_PIN1, ak::assign::ANGLE_OF_FIRE_PWM_PIN2,
-                    ak::assign::ANGLE_OF_FIRE_PWM_CH1, ak::assign::ANGLE_OF_FIRE_PWM_CH2),
-      ball_compressor(ak::assign::BALL_COMPRESSOR_PWM_PIN1, ak::assign::BALL_COMPRESSOR_PWM_PIN2,
-                      ak::assign::BALL_COMPRESSOR_PWM_CH1, ak::assign::BALL_COMPRESSOR_PWM_CH2),
+    : angle_of_fire(ak::assign::ANGLE_OF_FIRE_DIR_PIN1, ak::assign::ANGLE_OF_FIRE_DIR_PIN2,
+                    ak::assign::ANGLE_OF_FIRE_PWM_PIN, ak::assign::ANGLE_OF_FIRE_PWM_CH),
+      ball_compressor(ak::assign::BALL_COMPRESSOR_DIR_PIN1, ak::assign::BALL_COMPRESSOR_DIR_PIN2,
+                      ak::assign::BALL_COMPRESSOR_PWM_PIN, ak::assign::BALL_COMPRESSOR_PWM_CH),
       trigger(ak::assign::TRIGGER_PIN, ak::assign::TRIGGER_CH) {
 }
 

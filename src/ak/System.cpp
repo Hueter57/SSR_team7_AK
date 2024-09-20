@@ -58,19 +58,21 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
         }
 
         {  // launcher
+            using ak::output::TB6612;
+
             const auto f_a = this->forward_launcher_angle_of_fire;
             const auto f_c = this->forward_launcher_ball_compressor;
 
             // upボタンとdownボタンで発射角度を調整
             const auto angle_of_fire_up   = input.state.button.up && f_a || input.state.button.down && !f_a;
             const auto angle_of_fire_down = input.state.button.down && f_a || input.state.button.up && !f_a;
-            output.launcher.angle_of_fire = angle_of_fire_up     ? ak::output::TB6612{.pwm1 = 255, .pwm2 = 0}
-                                            : angle_of_fire_down ? ak::output::TB6612{.pwm1 = 0, .pwm2 = 255}
-                                                                 : ak::output::TB6612{.pwm1 = 255, .pwm2 = 255};
+            output.launcher.angle_of_fire = angle_of_fire_up     ? TB6612{.dir1 = HIGH, .dir2 = LOW, .pwm = 255}
+                                            : angle_of_fire_down ? TB6612{.dir1 = LOW, .dir2 = HIGH, .pwm = 255}
+                                                                 : TB6612{.dir1 = HIGH, .dir2 = HIGH, .pwm = 255};
 
             // コンプレッサーは回しっぱなし
-            output.launcher.ball_compressor = {.pwm1 = static_cast<uint8_t>(f_c ? 255 : 0),
-                                               .pwm2 = static_cast<uint8_t>(f_c ? 0 : 255)};
+            output.launcher.ball_compressor = {
+                .dir1 = static_cast<uint8_t>(f_c), .dir2 = static_cast<uint8_t>(f_c), .pwm = 255};
 
             // circleボタンで発射
             output.launcher.trigger.pulse_width_us = input.state.button.circle ? this->pulse_width_launcher_trigger_on
