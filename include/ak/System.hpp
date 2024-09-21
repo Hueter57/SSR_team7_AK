@@ -3,6 +3,7 @@
 #include <Ps3Controller.h>
 
 #include "ak/Delay.hpp"
+#include "ak/Device.hpp"
 #include "ak/Input.hpp"
 #include "ak/Output.hpp"
 
@@ -19,12 +20,12 @@ private:
     bool    forward_stearing_right_front;
     bool    forward_stearing_left_front;
     bool    forward_stearing_back;
-    int16_t pulse_width_arm_lift_up;
-    int16_t pulse_width_arm_lift_down;
-    int16_t pulse_width_arm_hand_open;
-    int16_t pulse_width_arm_hand_close;
-    int16_t pulse_width_launcher_trigger_on;
-    int16_t pulse_width_launcher_trigger_off;
+    int16_t angle_arm_lift_up;
+    int16_t angle_arm_lift_down;
+    int16_t angle_arm_hand_open;
+    int16_t angle_arm_hand_close;
+    int16_t angle_launcher_trigger_on;
+    int16_t angle_launcher_trigger_off;
 
 public:
     auto init() -> void;

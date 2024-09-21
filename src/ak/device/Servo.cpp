@@ -16,5 +16,5 @@ auto ak::device::Servo::stop() -> void {
 }
 
 auto ak::device::Servo::set_value(const ak::output::Servo &value) -> void {
-    ledcWrite(this->pwm_ch, constrain(value.pulse_width_us, PWM_PULSE_WIDTH_MIN_US, PWM_PULSE_WIDTH_MAX_US));
+    ledcWrite(this->pwm_ch, value.duty);
 }
