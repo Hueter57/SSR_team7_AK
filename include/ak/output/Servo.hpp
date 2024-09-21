@@ -5,7 +5,7 @@
 namespace ak::output {
 struct Servo
 {
-    int16_t pulse_width_us;
+    uint32_t duty;
 
     static auto stop() -> Servo;
 };

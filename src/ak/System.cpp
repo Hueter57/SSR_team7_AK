@@ -3,7 +3,7 @@
 auto ak::System::init() -> void {
     this->stop                   = true;
     this->sound_player_is_active = true;
-    this->move_steps             = false;
+    this->move_steps             = 0;
 }
 
 auto ak::System::set_forward_launcher(bool ball_compressor, bool angle_of_fire) -> void {
@@ -19,29 +19,33 @@ auto ak::System::set_forward_stearing(bool right_front, bool left_front, bool ba
 
 auto ak::System::set_pulse_width_arm(int16_t lift_up, int16_t lift_down, int16_t hand_open,
                                      int16_t hand_close) -> void {
-    this->pulse_width_arm_lift_up    = lift_up;
-    this->pulse_width_arm_lift_down  = lift_down;
-    this->pulse_width_arm_hand_open  = hand_open;
-    this->pulse_width_arm_hand_close = hand_close;
+    this->angle_arm_lift_up    = lift_up;
+    this->angle_arm_lift_down  = lift_down;
+    this->angle_arm_hand_open  = hand_open;
+    this->angle_arm_hand_close = hand_close;
 }
 
 auto ak::System::set_pulse_width_launcher(int16_t trigger_on, int16_t trigger_off) -> void {
-    this->pulse_width_launcher_trigger_on  = trigger_on;
-    this->pulse_width_launcher_trigger_off = trigger_off;
+    this->angle_launcher_trigger_on  = trigger_on;
+    this->angle_launcher_trigger_off = trigger_off;
 }
 
 auto ak::System::update(const ak::Input &input) -> ak::Output {
     auto output = ak::Output::stop();
 
-    if (input.event.button_down.start) {
-        this->stop = !this->stop;
+    if (this->stop) {
+        if (!input.event.button_down.start) {
+            return output;
+        }
+        this->stop = false;
+    } else if (input.event.button_down.start) {
+        this->stop = true;
+        return output;
     }
+    output.stop_led = LOW;
+
     if (input.event.button_down.select) {
         this->sound_player_is_active = !this->sound_player_is_active;
-    }
-
-    if (this->stop) {
-        return output;
     }
 
     const bool sound_only_mode = input.state.button.r2;
@@ -49,12 +53,14 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
     // r2が押されている間(`sound_only_mode` == true)は機体は動かない (音だけ)
     if (!sound_only_mode) {
         {  // arm
+            // pwm max: 1024 (大体1000で計算)
             // l1ボタンで開いたり閉じたり
-            output.arm.hand.pulse_width_us =
-                input.state.button.l1 ? this->pulse_width_arm_hand_open : this->pulse_width_arm_hand_close;
+            output.arm.hand.duty = static_cast<uint32_t>(
+                map(input.state.button.l1 ? this->angle_arm_hand_open : this->angle_arm_hand_close, 0, 180, 25, 120));
+            Serial.printf("%d\n", output.arm.hand.duty);
             // r1ボタンでリフトを上下
-            output.arm.lift.pulse_width_us =
-                input.state.button.r1 ? this->pulse_width_arm_lift_up : this->pulse_width_arm_lift_down;
+            output.arm.lift.duty = static_cast<uint32_t>(
+                map(input.state.button.r1 ? this->angle_arm_lift_up : this->angle_arm_lift_down, 0, 180, 25, 120));
         }
 
         {  // launcher
@@ -72,11 +78,13 @@ auto ak::System::update(const ak::Input &input) -> ak::Output {
 
             // コンプレッサーは回しっぱなし
             output.launcher.ball_compressor = {
-                .dir1 = static_cast<uint8_t>(f_c), .dir2 = static_cast<uint8_t>(f_c), .pwm = 255};
+                .dir1 = static_cast<uint8_t>(f_c), .dir2 = static_cast<uint8_t>(!f_c), .pwm = 255};
 
+            // pwm max: 1024 (大体1000で計算)
             // circleボタンで発射
-            output.launcher.trigger.pulse_width_us = input.state.button.circle ? this->pulse_width_launcher_trigger_on
-                                                                               : this->pulse_width_launcher_trigger_off;
+            output.launcher.trigger.duty = static_cast<uint32_t>(
+                map(input.state.button.circle ? this->angle_launcher_trigger_on : this->angle_launcher_trigger_off, 0,
+                    180, 25, 120));
         }
 
         {  // stearing

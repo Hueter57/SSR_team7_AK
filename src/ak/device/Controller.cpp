@@ -8,7 +8,7 @@ ak::device::Controller::Controller() : ps3() {
 }
 
 auto ak::device::Controller::begin_connection() -> void {
-    this->ps3.begin("");
+    this->ps3.begin("90:34:FC:AA:AB:48");
 }
 
 auto ak::device::Controller::attach_on_recieved(void (*on_recieved)()) -> void {
