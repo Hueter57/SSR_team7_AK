@@ -10,6 +10,10 @@ struct Launcher
     TB6612 ball_compressor;
     Servo  trigger;
 
-    static auto stop() -> Launcher;
+    constexpr static auto stop() -> Launcher;
 };
 }  // namespace ak::output
+
+constexpr auto ak::output::Launcher::stop() -> ak::output::Launcher {
+    return Launcher{TB6612::stop(), TB6612::stop(), Servo::stop()};
+}

@@ -8,6 +8,10 @@ struct Arm
     Servo hand;
     Servo lift;
 
-    static auto stop() -> Arm;
+    constexpr static auto stop() -> Arm;
 };
 }  // namespace ak::output
+
+constexpr auto ak::output::Arm::stop() -> ak::output::Arm {
+    return Arm{Servo::stop(), Servo::stop()};
+}

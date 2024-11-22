@@ -9,6 +9,10 @@ struct Stearing
     CytronMD left_front;
     CytronMD back;
 
-    static auto stop() -> Stearing;
+    constexpr static auto stop() -> Stearing;
 };
 }  // namespace ak::output
+
+constexpr auto ak::output::Stearing::stop() -> ak::output::Stearing {
+    return Stearing{CytronMD::stop(), CytronMD::stop(), CytronMD::stop()};
+}

@@ -10,6 +10,10 @@ struct CytronMD
     uint8_t dir;
     uint8_t pwm;
 
-    static auto stop() -> CytronMD;
+    constexpr static auto stop() -> CytronMD;
 };
 }  // namespace ak::output
+
+constexpr auto ak::output::CytronMD::stop() -> ak::output::CytronMD {
+    return CytronMD{LOW, 0};
+}

@@ -7,6 +7,10 @@ struct Servo
 {
     uint32_t duty;
 
-    static auto stop() -> Servo;
+    constexpr static auto stop() -> Servo;
 };
 }  // namespace ak::output
+
+constexpr auto ak::output::Servo::stop() -> ak::output::Servo {
+    return Servo{0};
+}
