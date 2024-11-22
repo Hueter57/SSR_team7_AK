@@ -27,4 +27,8 @@ void setup() {
 }
 
 void loop() {
+    auto _      = ak::Delay();
+    auto input  = dev.get_input();
+    auto output = sys.update(input);
+    dev.set_value(output);
 }
